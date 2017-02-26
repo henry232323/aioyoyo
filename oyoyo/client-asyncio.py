@@ -50,7 +50,7 @@ class IRCClient(object):
     def connection_lost(self, exc):
         logging.info('connection lost: %s' % exc)
 
-    def send(self, msg):
+    def send(self, *args):
         bargs = []
         for arg in args:
             if isinstance(arg, str):
