@@ -18,7 +18,7 @@
 import logging
 import sys
 
-from aioyoyo.oyoyo.ircevents import *
+from .ircevents import *
 
 # Python < 3 compatibility
 if sys.version_info < (3,):

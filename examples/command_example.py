@@ -6,7 +6,7 @@ import asyncio
 class CommandExampleClient(CommandClient):
     def __init__(self, loop, address=None, port=None):
         CommandClient.__init__(self, loop, ExampleCommandHandler, address=address, port=port)
-        self.nick = "aioyo"
+        self.nick = "aioyoyo-example"
                 
     async def connection_made(self): # Overwrite connection_made to make it send join commands
         print("Successfully connected!")
@@ -27,7 +27,7 @@ class ExampleCommandHandler(CommandHandler):
         
 loop = asyncio.get_event_loop()
 
-client = CommandExampleClient(loop, address="chat.freenode.net", port=6667)
+client = CommandExampleClient(loop, address="irc.freenode.net", port=6667)
 
 loop.run_until_complete(client.connect())
 loop.run_forever()

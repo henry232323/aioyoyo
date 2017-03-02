@@ -4,10 +4,9 @@
 import logging
 import re
 
-from aioyoyo.client import IRCClient
-
-from aioyoyo import helpers
-from aioyoyo.oyoyo.cmdhandler import DefaultCommandHandler
+from .client import IRCClient
+from . import helpers
+from .cmdhandler import DefaultCommandHandler
 
 HOST = 'irc.freenode.net'
 PORT = 6667
