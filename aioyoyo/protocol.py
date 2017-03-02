@@ -13,29 +13,34 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-'''A basic subclass of asyncio.Protocol using a buffer (for combined / split
-irc messages, calls self.client.x for all callback events'''
+"""A basic subclass of asyncio.Protocol using a buffer (for combined / split
+irc messages, calls self.client.x for all callback events"""
 import asyncio
 
 class ClientProtocol(asyncio.Protocol):
     def __init__(self, client):
         self.client = client
         self.buffer = bytes()
+        self.sockname = None
+        self.transport = None
 
     def connection_made(self, transport):
         self.sockname = transport.get_extra_info("sockname")
         self.transport = transport
-        self.client.connection_made()
+        asyncio.ensure_future(self.client.connection_made())
         
     def connection_lost(self, exc):
-        self.client.connection_lost(exc)
+        asyncio.ensure_future(self.client.connection_lost(exc))
         
     def data_received(self, data):
         self.buffer += data
         pts = self.buffer.split(b"\n")
         self.buffer = pts.pop()
         for el in pts:
-            self.client.data_received(el)
+            asyncio.ensure_future(self.client.data_received(el))
 
-    def send(self, message):
+    async def send(self, message):
         self.transport.write(message.encode())
+
+    async def send_raw(self, data):
+        self.transport.write(data)

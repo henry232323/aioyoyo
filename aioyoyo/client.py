@@ -13,44 +13,49 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-'''
-A small simple port of oyoyo to use asyncio instead of its original
+"""
+A small simple port of aioyoyo to use asyncio instead of its original
 threading client. Creating an IRCClient instance will create the protocol
 instance.
 
 To start the connection run IRCClient.connect(); (coroutine)
-'''
+"""
 
-import asyncio
 import logging
 
-from protocol import ClientProtocol
+from .oyoyo.parse import *
+from .protocol import ClientProtocol
 
-from oyoyo.parse import *
-from oyoyo.cmdhandler import IRCClientError
+from aioyoyo.oyoyo.cmdhandler import IRCClientError
+
 
 class IRCClient(object):
-    def __init__(self, loop, host, protocol=ClientProtocol):
-        '''Takes the event loop, a host (address, port) and if wanted
+    def __init__(self, loop, address=None, port=None, protocol=ClientProtocol):
+        """Takes the event loop, a host (address, port) and if wanted
         an alternate protocol and be defined. By default will use the
-        ClientProtocol class, which just uses the IRCClient's tracebacks'''
+        ClientProtocol class, which just uses the IRCClient's tracebacks"""
         self.loop = loop
-        self.host = host
+        self.host = (address, port)
+        self.address = address
+        self.port = port
         self.protocol = protocol(self)
 
-    async def connect(self):
-        await self.loop.create_connection(lambda: self.protocol, self.host[0], self.host[1])        
+        self.logger = logging.getLogger("aioyoyo")
+        self.logger.setLevel(logging.INFO)
 
-    def connection_made(self):
+    async def connect(self):
+        await self.loop.create_connection(lambda: self.protocol, self.address, self.port)
+
+    async def connection_made(self):
         logging.info('connecting to %s:%s' % self.host)
-        
-    def data_received(self, data):
+
+    async def data_received(self, data):
         logging.info('received: %s' % data)
 
-    def connection_lost(self, exc):
+    async def connection_lost(self, exc):
         logging.info('connection lost: %s' % exc)
 
-    def send(self, *args):
+    async def send(self, *args):
         bargs = []
         for arg in args:
             if isinstance(arg, str):
@@ -62,23 +67,31 @@ class IRCClient(object):
                                      % repr([(type(arg), arg) for arg in args]))
 
         msg = b" ".join(bargs)
-        self.protocol.transport.write(msg + b"\r\n")       
+        await self.protocol.send_raw(msg + b"\r\n")
         logging.info('---> send "%s"' % msg)
 
-    def close(self):
+    async def send_msg(self, message):
+        await self.protocol.send(message)
+
+    async def send_raw(self, data):
+        await self.protocol.send_raw(data)
+
+    async def close(self):
         logging.info('close transport')
         self.protocol.transport.close()
 
-class CommandClient(IRCClient):
-    '''IRCClient, using a command handler'''
-    def __init__(self, loop, host, cmd_handler, commands, protocol=ClientProtocol):
-        '''Takes a command handler (see cmdhandler.CommandHandler) and
-        and commands, an object (module, class, etc) which has the attributes
-        of the commands you want accessible, i.e. commands.privmsg will be called
-        on a private message with appropriate *args'''
-        IRCClient.__init__(self, loop, protocol, host)
-        self.command_handler = cmd_handler(self, commands)
 
-    def data_received(self, data):
+class CommandClient(IRCClient):
+    """IRCClient, using a command handler"""
+    def __init__(self, loop, cmd_handler, address=None, port=None, protocol=ClientProtocol, **kwargs):
+        """Takes a command handler (see oyoyo.cmdhandler.CommandHandler)
+        whose attributes are the commands you want callable, for example
+        with a privmsg cmdhandler.privmsg will be awaited with the
+        appropriate *args, decorate methods with @protected to make it
+        uncallable as a command"""
+        IRCClient.__init__(self, loop, address=address, port=port, protocol=protocol, **kwargs)
+        self.command_handler = cmd_handler(self)
+
+    async def data_received(self, data):
         prefix, command, args = parse_raw_irc_command(data)
-        self.command_handler.run(command, prefix, *args)
+        await self.command_handler.run(command, prefix, *args)

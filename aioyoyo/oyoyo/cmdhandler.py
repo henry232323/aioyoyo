@@ -20,8 +20,9 @@ import logging
 import sys
 import traceback
 
-from oyoyo import helpers
-from oyoyo.parse import parse_nick
+from .parse import parse_nick
+from . import helpers
+
 
 # Python < 3 compatibility
 if sys.version_info < (3,):
@@ -54,9 +55,8 @@ class IRCClientError(Exception):
 class CommandHandler(object):
     """ The most basic CommandHandler """
 
-    def __init__(self, client, commands):
+    def __init__(self, client):
         self.client = client
-        self.commands = commands
 
     @protected
     def get(self, in_command_parts):
@@ -74,7 +74,7 @@ class CommandHandler(object):
             in_command_parts = in_command_parts.split('.')
         command_parts = in_command_parts[:]
 
-        p = self.commands
+        p = self
         while command_parts:
             cmd = command_parts.pop(0)
             if type(cmd) is bytes:
@@ -153,7 +153,7 @@ class DefaultBotCommandHandler(CommandHandler):
         if not arg:
             commands = self.getVisibleCommands()
             commands.sort()
-            helpers.msg(self.client, dest, 
+            helpers.msg(self.client, dest,
                 "available commands: %s" % " ".join(commands))
         else:
             try:
@@ -169,7 +169,7 @@ class DefaultBotCommandHandler(CommandHandler):
                 if subcommands:
                     doc += " [sub commands: %s]" % " ".join(subcommands)
 
-            helpers.msg(self.client, dest, "%s: %s" % (arg, doc)) 
+            helpers.msg(self.client, dest, "%s: %s" % (arg, doc))
 
 
 class BotCommandHandler(DefaultCommandHandler):

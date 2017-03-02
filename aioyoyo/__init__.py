@@ -18,5 +18,7 @@
 """A small, simple irc lib for python suitable for bots, clients and anything else.
 
 For more information and documentation about this package:
-   http://code.google.com/p/oyoyo/
+   http://code.google.com/p/aioyoyo/
 """
+
+__all__ = ["client", "protocol", "cmdhandler", "helpers", "oyoyo"]

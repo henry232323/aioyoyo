@@ -1,18 +1,18 @@
 #!/usr/bin/python
-"""Example bot for oyoyo that responds to !say"""
+"""Example bot for aioyoyo that responds to !say"""
 
 import logging
 import re
 
-from oyoyo.client import IRCClient
-from oyoyo.cmdhandler import DefaultCommandHandler
-from oyoyo import helpers
+from aioyoyo.client import IRCClient
 
+from aioyoyo import helpers
+from aioyoyo.oyoyo.cmdhandler import DefaultCommandHandler
 
 HOST = 'irc.freenode.net'
 PORT = 6667
-NICK = 'oyoyo-example'
-CHANNEL = '#oyoyo-test'
+NICK = 'aioyoyo-example'
+CHANNEL = '#aioyoyo-test'
 
 
 class MyHandler(DefaultCommandHandler):

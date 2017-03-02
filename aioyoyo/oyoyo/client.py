@@ -15,20 +15,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+import collections
 import logging
 import socket
 import sys
-import re
-import string
 import time
-import threading
-import os
 import traceback
 
-from oyoyo.parse import *
-from oyoyo import helpers
-from oyoyo.cmdhandler import CommandError
-import collections
+from .parse import *
+
+from . import helpers
+from .cmdhandler import CommandError
 
 # Python < 3 compatibility
 if sys.version_info < (3,):
@@ -49,10 +46,10 @@ class IRCClient:
     def __init__(self, cmd_handler, **kwargs):
         """ the first argument should be an object with attributes/methods named 
         as the irc commands. You may subclass from one of the classes in 
-        oyoyo.cmdhandler for convenience but it is not required. The 
+        aioyoyo.cmdhandler for convenience but it is not required. The
         methods should have arguments (prefix, args). prefix is 
         normally the sender of the command. args is a list of arguments.
-        Its recommened you subclass oyoyo.cmdhandler.DefaultCommandHandler, 
+        Its recommened you subclass aioyoyo.cmdhandler.DefaultCommandHandler,
         this class provides defaults for callbacks that are required for 
         normal IRC operation.
 
@@ -132,7 +129,7 @@ class IRCClient:
             try:  # a little dance of compatibility to get the errno
                 errno = se.errno
             except AttributeError:
-                errno = se[0]                    
+                errno = se[0]
             if not self.blocking and errno == 11:
                 pass
             else:
@@ -153,7 +150,7 @@ class IRCClient:
 
         if self.connect_cb:
             self.connect_cb(self)
-            
+
     def conn(self):
         """returns a generator object. """
         try:
@@ -173,7 +170,7 @@ class IRCClient:
                     try:  # a little dance of compatibility to get the errno
                         errno = e.errno
                     except AttributeError:
-                        errno = e[0]                        
+                        errno = e[0]
                     if not self.blocking and errno == 11:
                         pass
                     else:
@@ -193,7 +190,7 @@ class IRCClient:
                             self.command_handler.run(command, prefix, *args)
                         except CommandError:
                             # error will have already been loggingged by the handler
-                            pass 
+                            pass
 
                 yield True
         except socket.timeout as se:
@@ -210,16 +207,18 @@ class IRCClient:
             raise e
         else:
             logging.debug("ending while, end is %s" % self._end)
-            if self.socket: 
+            if self.socket:
                 logging.info('finished: closing socket')
                 self.socket.close()
             yield False
+
     def close(self):
         # with extreme prejudice
         if self.socket:
             logging.info('shutdown socket')
             self._end = True
             self.socket.shutdown(socket.SHUT_RDWR)
+
 
 class IRCApp:
     """ This class manages several IRCClient instances without the use of threads.
@@ -268,25 +267,25 @@ class IRCApp:
             for client, clientdesc in self._clients.items():
                 if clientdesc.con is None:
                     clientdesc.con = client.connect()
-                
+
                 try:
                     next(clientdesc.con)
                 except Exception as e:
                     logging.error('client error %s' % e)
                     logging.error(traceback.format_exc())
                     if clientdesc.autoreconnect:
-                        clientdesc.con = None 
+                        clientdesc.con = None
                         if isinstance(clientdesc.autoreconnect, (int, float)):
                             clientdesc.autoreconnect -= 1
                         found_one_alive = True
                     else:
-                        clientdesc.con = False 
+                        clientdesc.con = False
                 else:
                     found_one_alive = True
-                
+
             if not found_one_alive:
                 logging.info('nothing left alive... quiting')
-                self.stop() 
+                self.stop()
 
             now = time.time()
             timers = self._timers[:]
@@ -295,7 +294,7 @@ class IRCApp:
                 if now > target_time:
                     logging.info('calling timer cb %s' % cb)
                     cb()
-                else:   
+                else:
                     self._timers.append((target_time, cb))
 
             time.sleep(self.sleep_time)
@@ -303,7 +302,3 @@ class IRCApp:
     def stop(self):
         """ stop the application """
         self.running = False
-
-
-
-
