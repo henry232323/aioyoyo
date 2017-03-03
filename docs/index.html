@@ -89,7 +89,7 @@
 <li><a class="reference internal" href="#base-clients">Base Clients</a></li>
 <li><a class="reference internal" href="#module-aioyoyo.cmdhandler">Command Handlers</a></li>
 <li><a class="reference internal" href="#default-protocol">Default Protocol</a></li>
-<li><a class="reference internal" href="#module-aioyoyo.helpers">Additional Helper Functions</a></li>
+<li><a class="reference internal" href="#additional-helper-functions">Additional Helper Functions</a></li>
 <li><a class="reference internal" href="#defined-exceptions">Defined Exceptions</a></li>
 <li><a class="reference internal" href="#irc-events">IRC Events</a></li>
 </ul>
@@ -368,85 +368,94 @@ If you want your bot to properly respond to pings, etc, you should subclass this
 </dd></dl>
 
 </div>
-<div class="section" id="module-aioyoyo.helpers">
-<span id="additional-helper-functions"></span><h2>Additional Helper Functions<a class="headerlink" href="#module-aioyoyo.helpers" title="Permalink to this headline">¶</a></h2>
-<p>Contains helper functions for common IRC commands</p>
-<dl class="function">
-<dt id="aioyoyo.helpers.channel_list">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">channel_list</code><span class="sig-paren">(</span><em>cli</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#channel_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.channel_list" title="Permalink to this definition">¶</a></dt>
+<div class="section" id="additional-helper-functions">
+<h2>Additional Helper Functions<a class="headerlink" href="#additional-helper-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="aioyoyo.helpers.HelperClient">
+<em class="property">class </em><code class="descclassname">aioyoyo.helpers.</code><code class="descname">HelperClient</code><span class="sig-paren">(</span><em>loop</em>, <em>address=None</em>, <em>port=None</em>, <em>protocol=&lt;class 'aioyoyo.protocol.ClientProtocol'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains helper functions for common IRC commands, you may either inherit
+from HelperClient (which inherits IRCClient,) or you may just call the methods
+indirectly with HelperClient.method(client, <a href="#id1"><span class="problematic" id="id2">*</span></a>args), for example:</p>
+<p>MyClient = IRCClient()
+HelperClient.msg(MyClient, &#8216;username&#8217;, &#8216;hi!&#8217;)</p>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.channel_list">
+<code class="descname">channel_list</code><span class="sig-paren">(</span><em>cli</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.channel_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.channel_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send the LIST command</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.cs">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">cs</code><span class="sig-paren">(</span><em>cli</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#cs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.cs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Messages ChanServ with space joined <a href="#id1"><span class="problematic" id="id2">*</span></a>args</p>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.cs">
+<code class="descname">cs</code><span class="sig-paren">(</span><em>cli</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.cs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.cs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Messages ChanServ with space joined <a href="#id3"><span class="problematic" id="id4">*</span></a>args</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.ctcp">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">ctcp</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>cmd</em>, <em>msg=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#ctcp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.ctcp" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.ctcp">
+<code class="descname">ctcp</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>cmd</em>, <em>msg=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.ctcp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.ctcp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send CTCP command using PRIVMSG where <cite>handle</cite> is the user, <cite>cmd</cite> is the command and the optional <cite>msg</cite></p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.ctcp_reply">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">ctcp_reply</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>cmd</em>, <em>msg=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#ctcp_reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.ctcp_reply" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.ctcp_reply">
+<code class="descname">ctcp_reply</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>cmd</em>, <em>msg=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.ctcp_reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.ctcp_reply" title="Permalink to this definition">¶</a></dt>
 <dd><p>Forewards ctcp_reply command to notice function with added CTCP formatting</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.identify">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">identify</code><span class="sig-paren">(</span><em>cli</em>, <em>passwd</em>, <em>authuser='NickServ'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#identify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.identify" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.identify">
+<code class="descname">identify</code><span class="sig-paren">(</span><em>cli</em>, <em>passwd</em>, <em>authuser='NickServ'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.identify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.identify" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send IDENTIFY command with <cite>passwd</cite>, default <cite>authuser</cite> is NickServ</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.kick">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">kick</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>channel</em>, <em>reason=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#kick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.kick" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.kick">
+<code class="descname">kick</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>channel</em>, <em>reason=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.kick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.kick" title="Permalink to this definition">¶</a></dt>
 <dd><p>KICK <cite>handle</cite> from <cite>channel</cite> with optional <cite>reason</cite></p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.mode">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">mode</code><span class="sig-paren">(</span><em>cli</em>, <em>channel</em>, <em>mode</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.mode" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.mode">
+<code class="descname">mode</code><span class="sig-paren">(</span><em>cli</em>, <em>channel</em>, <em>mode</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.mode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send the MODE command to the given <cite>channel</cite> with optional <cite>options</cite></p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.msg">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">msg</code><span class="sig-paren">(</span><em>cli</em>, <em>user</em>, <em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#msg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.msg" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.msg">
+<code class="descname">msg</code><span class="sig-paren">(</span><em>cli</em>, <em>user</em>, <em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.msg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.msg" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send message <cite>msg</cite> to <cite>user</cite> with PRIVMSG command</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.msgrandom">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">msgrandom</code><span class="sig-paren">(</span><em>cli</em>, <em>choices</em>, <em>dest</em>, <em>user=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#msgrandom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.msgrandom" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.msgrandom">
+<code class="descname">msgrandom</code><span class="sig-paren">(</span><em>cli</em>, <em>choices</em>, <em>dest</em>, <em>user=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.msgrandom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.msgrandom" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function for random responses</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.names">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">names</code><span class="sig-paren">(</span><em>cli</em>, <em>*channels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.names" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.names">
+<code class="descname">names</code><span class="sig-paren">(</span><em>cli</em>, <em>*channels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.names" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send NAMES command, see source</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.ns">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">ns</code><span class="sig-paren">(</span><em>cli</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#ns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.ns" title="Permalink to this definition">¶</a></dt>
-<dd><p>Messages NickServ with space joined <a href="#id3"><span class="problematic" id="id4">*</span></a>args</p>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.ns">
+<code class="descname">ns</code><span class="sig-paren">(</span><em>cli</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.ns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.ns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Messages NickServ with space joined <a href="#id5"><span class="problematic" id="id6">*</span></a>args</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.quit">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">quit</code><span class="sig-paren">(</span><em>cli</em>, <em>msg='gone'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#quit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.quit" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.quit">
+<code class="descname">quit</code><span class="sig-paren">(</span><em>cli</em>, <em>msg='gone'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.quit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.quit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send quit command with optional message, defaults to  &#8216;gone&#8217;</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="aioyoyo.helpers.user">
-<code class="descclassname">aioyoyo.helpers.</code><code class="descname">user</code><span class="sig-paren">(</span><em>cli</em>, <em>username</em>, <em>realname=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.user" title="Permalink to this definition">¶</a></dt>
+<dl class="method">
+<dt id="aioyoyo.helpers.HelperClient.user">
+<code class="descname">user</code><span class="sig-paren">(</span><em>cli</em>, <em>username</em>, <em>realname=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient.user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient.user" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends USER command with given <cite>username</cite>, uses realname instead if given</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>

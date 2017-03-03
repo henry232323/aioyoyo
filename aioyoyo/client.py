@@ -107,7 +107,6 @@ class IRCClient(object):
         logging.info('close transport')
         self.protocol.transport.close()
 
-
 class CommandClient(IRCClient):
     """IRCClient, using a command handler"""
     def __init__(self, loop, cmd_handler, address=None, port=None, protocol=ClientProtocol, **kwargs):
@@ -124,3 +123,4 @@ class CommandClient(IRCClient):
         command_handler to run()"""
         prefix, command, args = parse_raw_irc_command(data)
         await self.command_handler.run(command, prefix, *args)
+

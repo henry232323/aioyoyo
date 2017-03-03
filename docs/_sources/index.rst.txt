@@ -34,7 +34,7 @@ Default Protocol
 Additional Helper Functions
 -------------------------------
 
-.. automodule:: aioyoyo.helpers
+.. autoclass:: aioyoyo.helpers.HelperClient
    :members:
    
 Defined Exceptions
