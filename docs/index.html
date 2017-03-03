@@ -1,0 +1,996 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Documentation for Aioyoyo &mdash; Aioyoyo 1.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Aioyoyo 1.1.0 documentation" href="#"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Aioyoyo
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <!-- Local TOC -->
+                <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Documentation for Aioyoyo</a><ul>
+<li><a class="reference internal" href="#base-clients">Base Clients</a></li>
+<li><a class="reference internal" href="#module-aioyoyo.cmdhandler">Command Handlers</a></li>
+<li><a class="reference internal" href="#default-protocol">Default Protocol</a></li>
+<li><a class="reference internal" href="#module-aioyoyo.helpers">Additional Helper Functions</a></li>
+<li><a class="reference internal" href="#defined-exceptions">Defined Exceptions</a></li>
+<li><a class="reference internal" href="#irc-events">IRC Events</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Aioyoyo</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Documentation for Aioyoyo</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="documentation-for-aioyoyo">
+<h1>Documentation for Aioyoyo<a class="headerlink" href="#documentation-for-aioyoyo" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="base-clients">
+<h2>Base Clients<a class="headerlink" href="#base-clients" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="aioyoyo.client.IRCClient">
+<em class="property">class </em><code class="descclassname">aioyoyo.client.</code><code class="descname">IRCClient</code><span class="sig-paren">(</span><em>loop</em>, <em>address=None</em>, <em>port=None</em>, <em>protocol=&lt;class 'aioyoyo.protocol.ClientProtocol'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="aioyoyo.client.IRCClient.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the connection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.client.IRCClient.connect">
+<code class="descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initiate the connection, creates a connection using the defined
+protocol</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.client.IRCClient.connection_lost">
+<code class="descname">connection_lost</code><span class="sig-paren">(</span><em>exc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.connection_lost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.connection_lost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the connection is dropped, by default prints
+the exception if there is one. Forwarded by protocol.connection_lost</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.client.IRCClient.connection_made">
+<code class="descname">connection_made</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.connection_made"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.connection_made" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called on a successful connection, by default forwarded by
+protocol.connection_made</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.client.IRCClient.data_received">
+<code class="descname">data_received</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.data_received"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.data_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when data is received by the connection, by default
+forwarded by protocol.data_received, passes bytes not str</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.client.IRCClient.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a message to the connected server. all arguments are joined
+with a space for convenience, for example the following are identical</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cli</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;JOIN </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">some_room</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cli</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;JOIN&quot;</span><span class="p">,</span> <span class="n">some_room</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In python 3, all args must be of type str or bytes, <em>BUT</em> if they are
+str they will be converted to bytes with the encoding specified by the
+&#8216;encoding&#8217; keyword argument (default &#8216;utf8&#8217;).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.client.IRCClient.send_msg">
+<code class="descname">send_msg</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.send_msg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.send_msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a str to the server from absolute raw, none of the formatting
+from IRCClient.send</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.client.IRCClient.send_raw">
+<code class="descname">send_raw</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.send_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.send_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send raw bytes to the server, none of the formatting from IRCClient.send</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aioyoyo.client.CommandClient">
+<em class="property">class </em><code class="descclassname">aioyoyo.client.</code><code class="descname">CommandClient</code><span class="sig-paren">(</span><em>loop</em>, <em>cmd_handler</em>, <em>address=None</em>, <em>port=None</em>, <em>protocol=&lt;class 'aioyoyo.protocol.ClientProtocol'&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#CommandClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.CommandClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>IRCClient, using a command handler</p>
+<dl class="method">
+<dt id="aioyoyo.client.CommandClient.data_received">
+<code class="descname">data_received</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#CommandClient.data_received"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.CommandClient.data_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>On IRCClient.data_received parse for a command and pass to the
+command_handler to run()</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-aioyoyo.cmdhandler">
+<span id="command-handlers"></span><h2>Command Handlers<a class="headerlink" href="#module-aioyoyo.cmdhandler" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="aioyoyo.cmdhandler.BotCommandHandler">
+<em class="property">class </em><code class="descclassname">aioyoyo.cmdhandler.</code><code class="descname">BotCommandHandler</code><span class="sig-paren">(</span><em>client</em>, <em>command_handler</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#BotCommandHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.BotCommandHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Complete command handler for bots</p>
+<dl class="method">
+<dt id="aioyoyo.cmdhandler.BotCommandHandler.privmsg">
+<code class="descname">privmsg</code><span class="sig-paren">(</span><em>prefix</em>, <em>dest</em>, <em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#BotCommandHandler.privmsg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.BotCommandHandler.privmsg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when privmsg command is received, just awaits
+BotCommandHandler.tryBotCommand with the same args</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.cmdhandler.BotCommandHandler.tryBotCommand">
+<code class="descname">tryBotCommand</code><span class="sig-paren">(</span><em>prefix</em>, <em>dest</em>, <em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#BotCommandHandler.tryBotCommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.BotCommandHandler.tryBotCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests a command to see if its a command for the bot, returns True
+and calls self.processBotCommand(cmd, sender) if its is.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aioyoyo.cmdhandler.CommandHandler">
+<em class="property">class </em><code class="descclassname">aioyoyo.cmdhandler.</code><code class="descname">CommandHandler</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#CommandHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.CommandHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>The most basic CommandHandler</p>
+<dl class="method">
+<dt id="aioyoyo.cmdhandler.CommandHandler.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>in_command_parts</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#CommandHandler.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.CommandHandler.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a command
+commands may be dotted. each command part is checked that it does
+not start with and underscore and does not have an attribute
+&#8220;protected&#8221;. if either of these is true, ProtectedCommandError
+is raised.
+its possible to pass both &#8220;command.sub.func&#8221; and
+[&#8220;command&#8221;, &#8220;sub&#8221;, &#8220;func&#8221;].</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.cmdhandler.CommandHandler.run">
+<code class="descname">run</code><span class="sig-paren">(</span><em>command</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#CommandHandler.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.CommandHandler.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds and runs a command</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aioyoyo.cmdhandler.DefaultBotCommandHandler">
+<em class="property">class </em><code class="descclassname">aioyoyo.cmdhandler.</code><code class="descname">DefaultBotCommandHandler</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#DefaultBotCommandHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.DefaultBotCommandHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default command handler for bots. Methods/Attributes are made
+available as commands</p>
+<dl class="method">
+<dt id="aioyoyo.cmdhandler.DefaultBotCommandHandler.getVisibleCommands">
+<code class="descname">getVisibleCommands</code><span class="sig-paren">(</span><em>obj=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#DefaultBotCommandHandler.getVisibleCommands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.DefaultBotCommandHandler.getVisibleCommands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all visible commands, protected</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.cmdhandler.DefaultBotCommandHandler.help">
+<code class="descname">help</code><span class="sig-paren">(</span><em>sender</em>, <em>dest</em>, <em>arg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#DefaultBotCommandHandler.help"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.DefaultBotCommandHandler.help" title="Permalink to this definition">¶</a></dt>
+<dd><p>List all available commands or get help on a specific command</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="aioyoyo.cmdhandler.DefaultCommandHandler">
+<em class="property">class </em><code class="descclassname">aioyoyo.cmdhandler.</code><code class="descname">DefaultCommandHandler</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#DefaultCommandHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.DefaultCommandHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>CommandHandler that provides methods for the normal operation of IRC.
+If you want your bot to properly respond to pings, etc, you should subclass this.</p>
+<dl class="method">
+<dt id="aioyoyo.cmdhandler.DefaultCommandHandler.ping">
+<code class="descname">ping</code><span class="sig-paren">(</span><em>prefix</em>, <em>server</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#DefaultCommandHandler.ping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.DefaultCommandHandler.ping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called on PING command, sends back PONG</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.cmdhandler.protected">
+<code class="descclassname">aioyoyo.cmdhandler.</code><code class="descname">protected</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/cmdhandler.html#protected"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.cmdhandler.protected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decorator to protect functions from being called as commands</p>
+</dd></dl>
+
+</div>
+<div class="section" id="default-protocol">
+<h2>Default Protocol<a class="headerlink" href="#default-protocol" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="aioyoyo.protocol.ClientProtocol">
+<em class="property">class </em><code class="descclassname">aioyoyo.protocol.</code><code class="descname">ClientProtocol</code><span class="sig-paren">(</span><em>client</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/protocol.html#ClientProtocol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.protocol.ClientProtocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default protocol, forewards all events to the client</p>
+<dl class="method">
+<dt id="aioyoyo.protocol.ClientProtocol.connection_lost">
+<code class="descname">connection_lost</code><span class="sig-paren">(</span><em>exc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/protocol.html#ClientProtocol.connection_lost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.protocol.ClientProtocol.connection_lost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called on a lost connection, calls client.connection_lost</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.protocol.ClientProtocol.connection_made">
+<code class="descname">connection_made</code><span class="sig-paren">(</span><em>transport</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/protocol.html#ClientProtocol.connection_made"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.protocol.ClientProtocol.connection_made" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called on a successful connection, calls client.connection_made</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.protocol.ClientProtocol.data_received">
+<code class="descname">data_received</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/protocol.html#ClientProtocol.data_received"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.protocol.ClientProtocol.data_received" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when data is received, calls client.data_received</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.protocol.ClientProtocol.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/protocol.html#ClientProtocol.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.protocol.ClientProtocol.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send an unencoded message to the server, will be encoded</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aioyoyo.protocol.ClientProtocol.send_raw">
+<code class="descname">send_raw</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/protocol.html#ClientProtocol.send_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.protocol.ClientProtocol.send_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send raw bytes to the server</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-aioyoyo.helpers">
+<span id="additional-helper-functions"></span><h2>Additional Helper Functions<a class="headerlink" href="#module-aioyoyo.helpers" title="Permalink to this headline">¶</a></h2>
+<p>Contains helper functions for common IRC commands</p>
+<dl class="function">
+<dt id="aioyoyo.helpers.channel_list">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">channel_list</code><span class="sig-paren">(</span><em>cli</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#channel_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.channel_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the LIST command</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.cs">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">cs</code><span class="sig-paren">(</span><em>cli</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#cs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.cs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Messages ChanServ with space joined <a href="#id1"><span class="problematic" id="id2">*</span></a>args</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.ctcp">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">ctcp</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>cmd</em>, <em>msg=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#ctcp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.ctcp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send CTCP command using PRIVMSG where <cite>handle</cite> is the user, <cite>cmd</cite> is the command and the optional <cite>msg</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.ctcp_reply">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">ctcp_reply</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>cmd</em>, <em>msg=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#ctcp_reply"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.ctcp_reply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forewards ctcp_reply command to notice function with added CTCP formatting</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.identify">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">identify</code><span class="sig-paren">(</span><em>cli</em>, <em>passwd</em>, <em>authuser='NickServ'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#identify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.identify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send IDENTIFY command with <cite>passwd</cite>, default <cite>authuser</cite> is NickServ</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.kick">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">kick</code><span class="sig-paren">(</span><em>cli</em>, <em>handle</em>, <em>channel</em>, <em>reason=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#kick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.kick" title="Permalink to this definition">¶</a></dt>
+<dd><p>KICK <cite>handle</cite> from <cite>channel</cite> with optional <cite>reason</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.mode">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">mode</code><span class="sig-paren">(</span><em>cli</em>, <em>channel</em>, <em>mode</em>, <em>options=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the MODE command to the given <cite>channel</cite> with optional <cite>options</cite></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.msg">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">msg</code><span class="sig-paren">(</span><em>cli</em>, <em>user</em>, <em>msg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#msg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send message <cite>msg</cite> to <cite>user</cite> with PRIVMSG command</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.msgrandom">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">msgrandom</code><span class="sig-paren">(</span><em>cli</em>, <em>choices</em>, <em>dest</em>, <em>user=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#msgrandom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.msgrandom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function for random responses</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.names">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">names</code><span class="sig-paren">(</span><em>cli</em>, <em>*channels</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send NAMES command, see source</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.ns">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">ns</code><span class="sig-paren">(</span><em>cli</em>, <em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#ns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.ns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Messages NickServ with space joined <a href="#id3"><span class="problematic" id="id4">*</span></a>args</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.quit">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">quit</code><span class="sig-paren">(</span><em>cli</em>, <em>msg='gone'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#quit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send quit command with optional message, defaults to  &#8216;gone&#8217;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aioyoyo.helpers.user">
+<code class="descclassname">aioyoyo.helpers.</code><code class="descname">user</code><span class="sig-paren">(</span><em>cli</em>, <em>username</em>, <em>realname=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends USER command with given <cite>username</cite>, uses realname instead if given</p>
+</dd></dl>
+
+</div>
+<div class="section" id="defined-exceptions">
+<h2>Defined Exceptions<a class="headerlink" href="#defined-exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="aioyoyo.oyoyo.cmdhandler.CommandError">
+<em class="property">exception </em><code class="descclassname">aioyoyo.oyoyo.cmdhandler.</code><code class="descname">CommandError</code><span class="sig-paren">(</span><em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/oyoyo/cmdhandler.html#CommandError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.oyoyo.cmdhandler.CommandError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="aioyoyo.oyoyo.cmdhandler.NoSuchCommandError">
+<em class="property">exception </em><code class="descclassname">aioyoyo.oyoyo.cmdhandler.</code><code class="descname">NoSuchCommandError</code><span class="sig-paren">(</span><em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/oyoyo/cmdhandler.html#NoSuchCommandError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.oyoyo.cmdhandler.NoSuchCommandError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="aioyoyo.oyoyo.cmdhandler.ProtectedCommandError">
+<em class="property">exception </em><code class="descclassname">aioyoyo.oyoyo.cmdhandler.</code><code class="descname">ProtectedCommandError</code><span class="sig-paren">(</span><em>cmd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/oyoyo/cmdhandler.html#ProtectedCommandError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.oyoyo.cmdhandler.ProtectedCommandError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="exception">
+<dt id="aioyoyo.oyoyo.cmdhandler.IRCClientError">
+<em class="property">exception </em><code class="descclassname">aioyoyo.oyoyo.cmdhandler.</code><code class="descname">IRCClientError</code><a class="reference internal" href="_modules/aioyoyo/oyoyo/cmdhandler.html#IRCClientError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.oyoyo.cmdhandler.IRCClientError" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="irc-events">
+<h2>IRC Events<a class="headerlink" href="#irc-events" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="35%" />
+<col width="13%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Num:</th>
+<th class="head">Command</th>
+<th class="head">Num:</th>
+<th class="head">Command</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>001:</td>
+<td>welcome</td>
+<td>349:</td>
+<td>endofexceptlist</td>
+</tr>
+<tr class="row-odd"><td>002:</td>
+<td>yourhost</td>
+<td>351:</td>
+<td>version</td>
+</tr>
+<tr class="row-even"><td>003:</td>
+<td>created</td>
+<td>352:</td>
+<td>whoreply</td>
+</tr>
+<tr class="row-odd"><td>004:</td>
+<td>myinfo</td>
+<td>353:</td>
+<td>namreply</td>
+</tr>
+<tr class="row-even"><td>005:</td>
+<td>featurelist</td>
+<td>361:</td>
+<td>killdone</td>
+</tr>
+<tr class="row-odd"><td>010:</td>
+<td>toomanypeeps</td>
+<td>362:</td>
+<td>closing</td>
+</tr>
+<tr class="row-even"><td>200:</td>
+<td>tracelink</td>
+<td>363:</td>
+<td>closeend</td>
+</tr>
+<tr class="row-odd"><td>201:</td>
+<td>traceconnecting</td>
+<td>364:</td>
+<td>links</td>
+</tr>
+<tr class="row-even"><td>202:</td>
+<td>tracehandshake</td>
+<td>365:</td>
+<td>endoflinks</td>
+</tr>
+<tr class="row-odd"><td>203:</td>
+<td>traceunknown</td>
+<td>366:</td>
+<td>endofnames</td>
+</tr>
+<tr class="row-even"><td>204:</td>
+<td>traceoperator</td>
+<td>367:</td>
+<td>banlist</td>
+</tr>
+<tr class="row-odd"><td>205:</td>
+<td>traceuser</td>
+<td>368:</td>
+<td>endofbanlist</td>
+</tr>
+<tr class="row-even"><td>206:</td>
+<td>traceserver</td>
+<td>369:</td>
+<td>endofwhowas</td>
+</tr>
+<tr class="row-odd"><td>207:</td>
+<td>traceservice</td>
+<td>371:</td>
+<td>info</td>
+</tr>
+<tr class="row-even"><td>208:</td>
+<td>tracenewtype</td>
+<td>372:</td>
+<td>motd</td>
+</tr>
+<tr class="row-odd"><td>209:</td>
+<td>traceclass</td>
+<td>373:</td>
+<td>infostart</td>
+</tr>
+<tr class="row-even"><td>210:</td>
+<td>tracereconnect</td>
+<td>374:</td>
+<td>endofinfo</td>
+</tr>
+<tr class="row-odd"><td>211:</td>
+<td>statslinkinfo</td>
+<td>375:</td>
+<td>motdstart</td>
+</tr>
+<tr class="row-even"><td>212:</td>
+<td>statscommands</td>
+<td>376:</td>
+<td>endofmotd</td>
+</tr>
+<tr class="row-odd"><td>213:</td>
+<td>statscline</td>
+<td>377:</td>
+<td>motd2</td>
+</tr>
+<tr class="row-even"><td>214:</td>
+<td>statsnline</td>
+<td>381:</td>
+<td>youreoper</td>
+</tr>
+<tr class="row-odd"><td>215:</td>
+<td>statsiline</td>
+<td>382:</td>
+<td>rehashing</td>
+</tr>
+<tr class="row-even"><td>216:</td>
+<td>statskline</td>
+<td>384:</td>
+<td>myportis</td>
+</tr>
+<tr class="row-odd"><td>217:</td>
+<td>statsqline</td>
+<td>391:</td>
+<td>time</td>
+</tr>
+<tr class="row-even"><td>218:</td>
+<td>statsyline</td>
+<td>392:</td>
+<td>usersstart</td>
+</tr>
+<tr class="row-odd"><td>219:</td>
+<td>endofstats</td>
+<td>393:</td>
+<td>users</td>
+</tr>
+<tr class="row-even"><td>221:</td>
+<td>umodeis</td>
+<td>394:</td>
+<td>endofusers</td>
+</tr>
+<tr class="row-odd"><td>231:</td>
+<td>serviceinfo</td>
+<td>395:</td>
+<td>nousers</td>
+</tr>
+<tr class="row-even"><td>232:</td>
+<td>endofservices</td>
+<td>401:</td>
+<td>nosuchnick</td>
+</tr>
+<tr class="row-odd"><td>233:</td>
+<td>service</td>
+<td>402:</td>
+<td>nosuchserver</td>
+</tr>
+<tr class="row-even"><td>234:</td>
+<td>servlist</td>
+<td>403:</td>
+<td>nosuchchannel</td>
+</tr>
+<tr class="row-odd"><td>235:</td>
+<td>servlistend</td>
+<td>404:</td>
+<td>cannotsendtochan</td>
+</tr>
+<tr class="row-even"><td>241:</td>
+<td>statslline</td>
+<td>405:</td>
+<td>toomanychannels</td>
+</tr>
+<tr class="row-odd"><td>242:</td>
+<td>statsuptime</td>
+<td>406:</td>
+<td>wasnosuchnick</td>
+</tr>
+<tr class="row-even"><td>243:</td>
+<td>statsoline</td>
+<td>407:</td>
+<td>toomanytargets</td>
+</tr>
+<tr class="row-odd"><td>244:</td>
+<td>statshline</td>
+<td>409:</td>
+<td>noorigin</td>
+</tr>
+<tr class="row-even"><td>250:</td>
+<td>luserconns</td>
+<td>411:</td>
+<td>norecipient</td>
+</tr>
+<tr class="row-odd"><td>251:</td>
+<td>luserclient</td>
+<td>412:</td>
+<td>notexttosend</td>
+</tr>
+<tr class="row-even"><td>252:</td>
+<td>luserop</td>
+<td>413:</td>
+<td>notoplevel</td>
+</tr>
+<tr class="row-odd"><td>253:</td>
+<td>luserunknown</td>
+<td>414:</td>
+<td>wildtoplevel</td>
+</tr>
+<tr class="row-even"><td>254:</td>
+<td>luserchannels</td>
+<td>421:</td>
+<td>unknowncommand</td>
+</tr>
+<tr class="row-odd"><td>255:</td>
+<td>luserme</td>
+<td>422:</td>
+<td>nomotd</td>
+</tr>
+<tr class="row-even"><td>256:</td>
+<td>adminme</td>
+<td>423:</td>
+<td>noadmininfo</td>
+</tr>
+<tr class="row-odd"><td>257:</td>
+<td>adminloc1</td>
+<td>424:</td>
+<td>fileerror</td>
+</tr>
+<tr class="row-even"><td>258:</td>
+<td>adminloc2</td>
+<td>431:</td>
+<td>nonicknamegiven</td>
+</tr>
+<tr class="row-odd"><td>259:</td>
+<td>adminemail</td>
+<td>432:</td>
+<td>erroneusnickname</td>
+</tr>
+<tr class="row-even"><td>261:</td>
+<td>tracelog</td>
+<td>433:</td>
+<td>nicknameinuse</td>
+</tr>
+<tr class="row-odd"><td>262:</td>
+<td>endoftrace</td>
+<td>436:</td>
+<td>nickcollision</td>
+</tr>
+<tr class="row-even"><td>263:</td>
+<td>tryagain</td>
+<td>437:</td>
+<td>unavailresource</td>
+</tr>
+<tr class="row-odd"><td>265:</td>
+<td>n_local</td>
+<td>441:</td>
+<td>usernotinchannel</td>
+</tr>
+<tr class="row-even"><td>266:</td>
+<td>n_global</td>
+<td>442:</td>
+<td>notonchannel</td>
+</tr>
+<tr class="row-odd"><td>300:</td>
+<td>none</td>
+<td>443:</td>
+<td>useronchannel</td>
+</tr>
+<tr class="row-even"><td>301:</td>
+<td>away</td>
+<td>444:</td>
+<td>nologin</td>
+</tr>
+<tr class="row-odd"><td>302:</td>
+<td>userhost</td>
+<td>445:</td>
+<td>summondisabled</td>
+</tr>
+<tr class="row-even"><td>303:</td>
+<td>ison</td>
+<td>446:</td>
+<td>usersdisabled</td>
+</tr>
+<tr class="row-odd"><td>305:</td>
+<td>unaway</td>
+<td>451:</td>
+<td>notregistered</td>
+</tr>
+<tr class="row-even"><td>306:</td>
+<td>nowaway</td>
+<td>461:</td>
+<td>needmoreparams</td>
+</tr>
+<tr class="row-odd"><td>311:</td>
+<td>whoisuser</td>
+<td>462:</td>
+<td>alreadyregistered</td>
+</tr>
+<tr class="row-even"><td>312:</td>
+<td>whoisserver</td>
+<td>463:</td>
+<td>nopermforhost</td>
+</tr>
+<tr class="row-odd"><td>313:</td>
+<td>whoisoperator</td>
+<td>464:</td>
+<td>passwdmismatch</td>
+</tr>
+<tr class="row-even"><td>314:</td>
+<td>whowasuser</td>
+<td>465:</td>
+<td>yourebannedcreep</td>
+</tr>
+<tr class="row-odd"><td>315:</td>
+<td>endofwho</td>
+<td>466:</td>
+<td>youwillbebanned</td>
+</tr>
+<tr class="row-even"><td>316:</td>
+<td>whoischanop</td>
+<td>467:</td>
+<td>keyset</td>
+</tr>
+<tr class="row-odd"><td>317:</td>
+<td>whoisidle</td>
+<td>471:</td>
+<td>channelisfull</td>
+</tr>
+<tr class="row-even"><td>318:</td>
+<td>endofwhois</td>
+<td>472:</td>
+<td>unknownmode</td>
+</tr>
+<tr class="row-odd"><td>319:</td>
+<td>whoischannels</td>
+<td>473:</td>
+<td>inviteonlychan</td>
+</tr>
+<tr class="row-even"><td>321:</td>
+<td>liststart</td>
+<td>474:</td>
+<td>bannedfromchan</td>
+</tr>
+<tr class="row-odd"><td>322:</td>
+<td>list</td>
+<td>475:</td>
+<td>badchannelkey</td>
+</tr>
+<tr class="row-even"><td>323:</td>
+<td>listend</td>
+<td>476:</td>
+<td>badchanmask</td>
+</tr>
+<tr class="row-odd"><td>324:</td>
+<td>channelmodeis</td>
+<td>477:</td>
+<td>nochanmodes</td>
+</tr>
+<tr class="row-even"><td>329:</td>
+<td>channelcreate</td>
+<td>478:</td>
+<td>banlistfull</td>
+</tr>
+<tr class="row-odd"><td>331:</td>
+<td>notopic</td>
+<td>481:</td>
+<td>noprivileges</td>
+</tr>
+<tr class="row-even"><td>332:</td>
+<td>currenttopic</td>
+<td>482:</td>
+<td>chanoprivsneeded</td>
+</tr>
+<tr class="row-odd"><td>333:</td>
+<td>topicinfo</td>
+<td>483:</td>
+<td>cantkillserver</td>
+</tr>
+<tr class="row-even"><td>341:</td>
+<td>inviting</td>
+<td>484:</td>
+<td>restricted</td>
+</tr>
+<tr class="row-odd"><td>342:</td>
+<td>summoning</td>
+<td>485:</td>
+<td>uniqopprivsneeded</td>
+</tr>
+<tr class="row-even"><td>346:</td>
+<td>invitelist</td>
+<td>491:</td>
+<td>nooperhost</td>
+</tr>
+<tr class="row-odd"><td>347:</td>
+<td>endofinvitelist</td>
+<td>492:</td>
+<td>noservicehost</td>
+</tr>
+<tr class="row-even"><td>348:</td>
+<td>exceptlist</td>
+<td>501:</td>
+<td>umodeunknownflag</td>
+</tr>
+<tr class="row-odd"><td>_</td>
+<td>error</td>
+<td>_</td>
+<td>dcc_connect</td>
+</tr>
+<tr class="row-even"><td>_</td>
+<td>join</td>
+<td>_</td>
+<td>dcc_disconnect</td>
+</tr>
+<tr class="row-odd"><td>_</td>
+<td>kick</td>
+<td>_</td>
+<td>dccmsg</td>
+</tr>
+<tr class="row-even"><td>_</td>
+<td>mode</td>
+<td>_</td>
+<td>disconnect</td>
+</tr>
+<tr class="row-odd"><td>_</td>
+<td>part</td>
+<td>_</td>
+<td>ctcp</td>
+</tr>
+<tr class="row-even"><td>_</td>
+<td>ping</td>
+<td>_</td>
+<td>ctcpreply</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, henry232323.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -15,7 +15,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-""" contains helper functions for common irc commands """
+"""Contains helper functions for common irc commands"""
 
 import random
 

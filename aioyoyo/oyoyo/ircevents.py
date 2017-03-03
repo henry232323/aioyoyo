@@ -14,9 +14,10 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-
 # taken from python irclib.. who took it from...
 # Numeric table mostly stolen from the Perl IRC module (Net::IRC).
+"""Adds names for numeric commands"""
+
 numeric_events = {
     "001": "welcome",
     "002": "yourhost",
@@ -179,8 +180,10 @@ numeric_events = {
     "502": "usersdontmatch",
 }
 
+# Dict of all numeric events and their aliases
 numeric_events = {bytes(k, 'ascii'):v for k, v in numeric_events.items()}
 
+# Generated events
 generated_events = [
     # Generated events
     "dcc_connect",
@@ -191,8 +194,8 @@ generated_events = [
     "ctcpreply",
 ]
 
+# IRC protocol events
 protocol_events = [
-    # IRC protocol events
     "error",
     "join",
     "kick",
@@ -208,5 +211,6 @@ protocol_events = [
     "pong",
 ]
 
+# List of all events
 all_events = generated_events + protocol_events + list(numeric_events.values())
 

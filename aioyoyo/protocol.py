@@ -18,6 +18,7 @@ irc messages, calls self.client.x for all callback events"""
 import asyncio
 
 class ClientProtocol(asyncio.Protocol):
+    """Default protocol, forewards all events to the client"""
     def __init__(self, client):
         self.client = client
         self.buffer = bytes()
@@ -25,14 +26,17 @@ class ClientProtocol(asyncio.Protocol):
         self.transport = None
 
     def connection_made(self, transport):
+        """Called on a successful connection, calls client.connection_made"""
         self.sockname = transport.get_extra_info("sockname")
         self.transport = transport
         asyncio.ensure_future(self.client.connection_made())
         
     def connection_lost(self, exc):
+        """Called on a lost connection, calls client.connection_lost"""
         asyncio.ensure_future(self.client.connection_lost(exc))
         
     def data_received(self, data):
+        """Called when data is received, calls client.data_received"""
         self.buffer += data
         pts = self.buffer.split(b"\n")
         self.buffer = pts.pop()
@@ -40,7 +44,9 @@ class ClientProtocol(asyncio.Protocol):
             asyncio.ensure_future(self.client.data_received(el))
 
     async def send(self, message):
+        """Send an unencoded message to the server, will be encoded"""
         self.transport.write(message.encode())
 
     async def send_raw(self, data):
+        """Send raw bytes to the server"""
         self.transport.write(data)

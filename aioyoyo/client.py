@@ -31,9 +31,13 @@ from aioyoyo.oyoyo.cmdhandler import IRCClientError
 
 class IRCClient(object):
     def __init__(self, loop, address=None, port=None, protocol=ClientProtocol):
-        """Takes the event loop, a host (address, port) and if wanted
-        an alternate protocol and be defined. By default will use the
-        ClientProtocol class, which just uses the IRCClient's tracebacks"""
+        """
+        A basic Async IRC client. Use coroutine IRCClient.connect to initiate
+        the connection. Takes the event loop, a host (address, port) and if
+        wanted an alternate protocol can be defined. By default will use the
+        ClientProtocol class, which just uses the IRCClient's tracebacks and
+        passes received data to the client.
+        """
         self.loop = loop
         self.host = (address, port)
         self.address = address
@@ -44,18 +48,37 @@ class IRCClient(object):
         self.logger.setLevel(logging.INFO)
 
     async def connect(self):
+        """Initiate the connection, creates a connection using the defined
+        protocol"""
         await self.loop.create_connection(lambda: self.protocol, self.address, self.port)
 
     async def connection_made(self):
+        """Called on a successful connection, by default forwarded by
+        protocol.connection_made"""
         logging.info('connecting to %s:%s' % self.host)
 
     async def data_received(self, data):
-        logging.info('received: %s' % data)
+        """Called when data is received by the connection, by default
+        forwarded by protocol.data_received, passes bytes not str"""
+        logging.info('received: %s' % data.decode())
 
     async def connection_lost(self, exc):
+        """Called when the connection is dropped, by default prints
+        the exception if there is one. Forwarded by protocol.connection_lost"""
         logging.info('connection lost: %s' % exc)
 
     async def send(self, *args):
+        """Send a message to the connected server. all arguments are joined
+        with a space for convenience, for example the following are identical
+
+        >>> cli.send("JOIN %s" % some_room)
+        >>> cli.send("JOIN", some_room)
+
+        In python 3, all args must be of type str or bytes, *BUT* if they are
+        str they will be converted to bytes with the encoding specified by the
+        'encoding' keyword argument (default 'utf8').
+        """
+        # Convert all args to bytes if not already
         bargs = []
         for arg in args:
             if isinstance(arg, str):
@@ -71,12 +94,16 @@ class IRCClient(object):
         logging.info('---> send "%s"' % msg)
 
     async def send_msg(self, message):
+        """Send a str to the server from absolute raw, none of the formatting
+        from IRCClient.send"""
         await self.protocol.send(message)
 
     async def send_raw(self, data):
+        """Send raw bytes to the server, none of the formatting from IRCClient.send"""
         await self.protocol.send_raw(data)
 
     async def close(self):
+        """Close the connection"""
         logging.info('close transport')
         self.protocol.transport.close()
 
@@ -93,5 +120,7 @@ class CommandClient(IRCClient):
         self.command_handler = cmd_handler(self)
 
     async def data_received(self, data):
+        """On IRCClient.data_received parse for a command and pass to the
+        command_handler to run()"""
         prefix, command, args = parse_raw_irc_command(data)
         await self.command_handler.run(command, prefix, *args)

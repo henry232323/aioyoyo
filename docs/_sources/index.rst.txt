@@ -1,0 +1,152 @@
+.. Aioyoyo documentation master file, created by
+   sphinx-quickstart on Thu Mar  2 17:11:23 2017.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Documentation for Aioyoyo
+===================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+Base Clients
+--------------
+
+.. autoclass:: aioyoyo.client.IRCClient
+   :members:
+   
+.. autoclass:: aioyoyo.client.CommandClient
+   :members:
+   
+Command Handlers
+-----------------------
+
+.. automodule:: aioyoyo.cmdhandler
+   :members:
+   
+Default Protocol
+------------------
+
+.. autoclass:: aioyoyo.protocol.ClientProtocol
+   :members:
+   
+Additional Helper Functions
+-------------------------------
+
+.. automodule:: aioyoyo.helpers
+   :members:
+   
+Defined Exceptions
+----------------------
+
+.. autoexception:: aioyoyo.oyoyo.cmdhandler.CommandError
+   :members:
+
+.. autoexception:: aioyoyo.oyoyo.cmdhandler.NoSuchCommandError
+   :members:
+
+.. autoexception:: aioyoyo.oyoyo.cmdhandler.ProtectedCommandError
+   :members:
+
+.. autoexception:: aioyoyo.oyoyo.cmdhandler.IRCClientError
+   :members:
+   
+IRC Events
+-------------
+ ====== ================= ====== =================== 
+  Num:       Command       Num:        Command       
+ ====== ================= ====== =================== 
+  001:   welcome           349:   endofexceptlist    
+  002:   yourhost          351:   version            
+  003:   created           352:   whoreply           
+  004:   myinfo            353:   namreply           
+  005:   featurelist       361:   killdone           
+  010:   toomanypeeps      362:   closing            
+  200:   tracelink         363:   closeend           
+  201:   traceconnecting   364:   links              
+  202:   tracehandshake    365:   endoflinks         
+  203:   traceunknown      366:   endofnames         
+  204:   traceoperator     367:   banlist            
+  205:   traceuser         368:   endofbanlist       
+  206:   traceserver       369:   endofwhowas        
+  207:   traceservice      371:   info               
+  208:   tracenewtype      372:   motd               
+  209:   traceclass        373:   infostart          
+  210:   tracereconnect    374:   endofinfo          
+  211:   statslinkinfo     375:   motdstart          
+  212:   statscommands     376:   endofmotd          
+  213:   statscline        377:   motd2              
+  214:   statsnline        381:   youreoper          
+  215:   statsiline        382:   rehashing          
+  216:   statskline        384:   myportis           
+  217:   statsqline        391:   time               
+  218:   statsyline        392:   usersstart         
+  219:   endofstats        393:   users              
+  221:   umodeis           394:   endofusers         
+  231:   serviceinfo       395:   nousers            
+  232:   endofservices     401:   nosuchnick         
+  233:   service           402:   nosuchserver       
+  234:   servlist          403:   nosuchchannel      
+  235:   servlistend       404:   cannotsendtochan   
+  241:   statslline        405:   toomanychannels    
+  242:   statsuptime       406:   wasnosuchnick      
+  243:   statsoline        407:   toomanytargets     
+  244:   statshline        409:   noorigin           
+  250:   luserconns        411:   norecipient        
+  251:   luserclient       412:   notexttosend       
+  252:   luserop           413:   notoplevel         
+  253:   luserunknown      414:   wildtoplevel       
+  254:   luserchannels     421:   unknowncommand     
+  255:   luserme           422:   nomotd             
+  256:   adminme           423:   noadmininfo        
+  257:   adminloc1         424:   fileerror          
+  258:   adminloc2         431:   nonicknamegiven    
+  259:   adminemail        432:   erroneusnickname   
+  261:   tracelog          433:   nicknameinuse      
+  262:   endoftrace        436:   nickcollision      
+  263:   tryagain          437:   unavailresource    
+  265:   n_local           441:   usernotinchannel   
+  266:   n_global          442:   notonchannel       
+  300:   none              443:   useronchannel      
+  301:   away              444:   nologin            
+  302:   userhost          445:   summondisabled     
+  303:   ison              446:   usersdisabled      
+  305:   unaway            451:   notregistered      
+  306:   nowaway           461:   needmoreparams     
+  311:   whoisuser         462:   alreadyregistered  
+  312:   whoisserver       463:   nopermforhost      
+  313:   whoisoperator     464:   passwdmismatch     
+  314:   whowasuser        465:   yourebannedcreep   
+  315:   endofwho          466:   youwillbebanned    
+  316:   whoischanop       467:   keyset             
+  317:   whoisidle         471:   channelisfull      
+  318:   endofwhois        472:   unknownmode        
+  319:   whoischannels     473:   inviteonlychan     
+  321:   liststart         474:   bannedfromchan     
+  322:   list              475:   badchannelkey      
+  323:   listend           476:   badchanmask        
+  324:   channelmodeis     477:   nochanmodes        
+  329:   channelcreate     478:   banlistfull        
+  331:   notopic           481:   noprivileges       
+  332:   currenttopic      482:   chanoprivsneeded   
+  333:   topicinfo         483:   cantkillserver     
+  341:   inviting          484:   restricted         
+  342:   summoning         485:   uniqopprivsneeded  
+  346:   invitelist        491:   nooperhost         
+  347:   endofinvitelist   492:   noservicehost      
+  348:   exceptlist        501:   umodeunknownflag   
+  _      error             _      dcc_connect        
+  _      join              _      dcc_disconnect     
+  _      kick              _      dccmsg             
+  _      mode              _      disconnect         
+  _      part              _      ctcp               
+  _      ping              _      ctcpreply          
+ ====== ================= ====== =================== 
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

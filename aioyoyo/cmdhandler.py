@@ -26,7 +26,7 @@ from . import helpers
 
 
 def protected(func):
-    """ decorator to protect functions from being called """
+    """Decorator to protect functions from being called as commands"""
     func.protected = True
     return func
 
@@ -39,7 +39,7 @@ class CommandHandler(object):
 
     @protected
     def get(self, in_command_parts):
-        """ finds a command
+        """Finds a command
         commands may be dotted. each command part is checked that it does
         not start with and underscore and does not have an attribute
         "protected". if either of these is true, ProtectedCommandError
@@ -77,7 +77,7 @@ class CommandHandler(object):
 
     @protected
     async def run(self, command, *args):
-        """ finds and runs a command """
+        """Finds and runs a command"""
         logging.debug("processCommand %s(%s)" % (command, args))
         logging.info("processCommand %s(%s)" % (command, args))
 
@@ -110,15 +110,17 @@ class DefaultCommandHandler(CommandHandler):
     """
 
     async def ping(self, prefix, server):
+        """Called on PING command, sends back PONG"""
         self.client.send('PONG', server)
 
 
 class DefaultBotCommandHandler(CommandHandler):
-    """ default command handler for bots. methods/attributes are made
+    """Default command handler for bots. Methods/Attributes are made
     available as commands """
 
     @protected
     def getVisibleCommands(self, obj=None):
+        """Gets all visible commands, protected"""
         test = (lambda x: isinstance(x, CommandHandler) or inspect.ismethod(x) or inspect.isfunction(x))
         members = inspect.getmembers(obj or self, test)
         return [m for m, _ in members
@@ -126,7 +128,7 @@ class DefaultBotCommandHandler(CommandHandler):
                     not hasattr(getattr(obj, m), 'protected'))]
 
     async def help(self, sender, dest, arg=None):
-        """list all available commands or get help on a specific command"""
+        """List all available commands or get help on a specific command"""
         logging.info('help sender=%s dest=%s arg=%s' % (sender, dest, arg))
         if not arg:
             commands = self.getVisibleCommands()
@@ -151,18 +153,20 @@ class DefaultBotCommandHandler(CommandHandler):
 
 
 class BotCommandHandler(DefaultCommandHandler):
-    """ complete command handler for bots """
+    """Complete command handler for bots"""
 
     def __init__(self, client, command_handler):
         DefaultCommandHandler.__init__(self, client)
         self.command_handler = command_handler
 
     async def privmsg(self, prefix, dest, msg):
+        """Called when privmsg command is received, just awaits
+        BotCommandHandler.tryBotCommand with the same args"""
         await self.tryBotCommand(prefix, dest, msg)
 
     @protected
     async def tryBotCommand(self, prefix, dest, msg):
-        """ tests a command to see if its a command for the bot, returns True
+        """Tests a command to see if its a command for the bot, returns True
         and calls self.processBotCommand(cmd, sender) if its is.
         """
 
@@ -186,13 +190,3 @@ class BotCommandHandler(DefaultCommandHandler):
         except CommandError as e:
             await helpers.msg(self.client, dest, str(e))
         return True
-
-
-
-
-
-
-
-
-
-
