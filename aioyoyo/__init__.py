@@ -19,5 +19,5 @@
 For more information and documentation about this package:
    http://code.google.com/p/aioyoyo/
 """
-
+from . import client, protocol, cmdhandler, helpers, oyoyo
 __all__ = ["client", "protocol", "cmdhandler", "helpers", "oyoyo"]
