@@ -16,8 +16,10 @@
 # THE SOFTWARE.
 """A small, simple irc lib for python suitable for bots, clients and anything else.
 
-For more information and documentation about this package:
+For more information and documentation about the original package:
    http://code.google.com/p/aioyoyo/
+
+For documentation on aioyoyo: http://aioyoyo.rhodochrosite.xyz/
 """
 from . import client, protocol, cmdhandler, helpers, oyoyo
 __all__ = ["client", "protocol", "cmdhandler", "helpers", "oyoyo"]

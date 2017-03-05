@@ -1,15 +1,18 @@
 from setuptools import setup
-from os import path
-
-here = path.abspath(path.dirname(__file__))
 
 # Get the long description from the README file
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
+long_description = """Aioyoyo
+A port of oyoyo to Asyncio for Python 3.5+
+
+Uses Asyncio instead of its original threading client. Creating an IRCClient instance will create the protocol instance.
+To start the connection run IRCClient.connect(); (coroutine)
+
+Uses oyoyo from [illuminatedWax](https://github.com/illuminatedwax)'s Pesterchum, slightly modified
+"""
 
 setup(
     name='aioyoyo',
-    version='1.1.0',
+    version='1.2.2',
     description='An Asyncio oyoyo port',
     long_description=long_description,
     url='https://github.com/henry232323/aioyoyo',

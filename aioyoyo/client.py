@@ -47,6 +47,9 @@ class IRCClient(object):
         self.logger = logging.getLogger("aioyoyo")
         self.logger.setLevel(logging.INFO)
 
+    def __repr__(self):
+        return "{0}(address={1}, port={2}, protocol={3})".format(self.__class__.__name__, self.host[0], self.host[1], self.protocol.__class__.__name__)
+
     async def connect(self):
         """Initiate the connection, creates a connection using the defined
         protocol"""
