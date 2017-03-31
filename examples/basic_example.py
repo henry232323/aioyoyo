@@ -1,7 +1,6 @@
 from aioyoyo.client import IRCClient
 import asyncio
 
-
 class BasicExampleClient(IRCClient):
     async def connection_made(self): # Overwrite connection_made to make it send join commands
         print("Successfully connected!")
