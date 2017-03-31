@@ -20,19 +20,19 @@
 # DEALINGS IN THE SOFTWARE.
 from setuptools import setup
 
-# Get the long description from the README file
 long_description = """Aioyoyo
 A port of oyoyo to Asyncio for Python 3.5+
 
 Uses Asyncio instead of its original threading client. Creating an IRCClient instance will create the protocol instance.
-To start the connection run IRCClient.connect(); (coroutine)
+To start the connection await IRCClient.connect();
 
 Uses oyoyo from [illuminatedWax](https://github.com/illuminatedwax)'s Pesterchum, slightly modified
+oyoyo is an IRC library for Python, this project makes it completely asynchronous, with event callbacks
 """
 
 setup(
     name='aioyoyo',
-    version='1.2.2',
+    version='1.2.3',
     description='An Asyncio oyoyo port',
     long_description=long_description,
     url='https://github.com/henry232323/aioyoyo',
@@ -43,7 +43,7 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Topic :: Communications :: Chat :: Internet Relay Chat',
-        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],
