@@ -166,7 +166,7 @@
 <h2>Base Clients<a class="headerlink" href="#base-clients" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="aioyoyo.client.IRCClient">
-<em class="property">class </em><code class="descclassname">aioyoyo.client.</code><code class="descname">IRCClient</code><span class="sig-paren">(</span><em>loop</em>, <em>address=None</em>, <em>port=None</em>, <em>protocol=&lt;class 'aioyoyo.protocol.ClientProtocol'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">aioyoyo.client.</code><code class="descname">IRCClient</code><span class="sig-paren">(</span><em>loop=None</em>, <em>address=None</em>, <em>port=None</em>, <em>protocol=&lt;class 'aioyoyo.protocol.ClientProtocol'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="aioyoyo.client.IRCClient.close">
 <code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.close" title="Permalink to this definition">¶</a></dt>
@@ -202,6 +202,12 @@ forwarded by protocol.data_received, passes bytes not str</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="aioyoyo.client.IRCClient.run">
+<code class="descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the client, blocking. For a non-blocking coroutine use client.connect()</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="aioyoyo.client.IRCClient.send">
 <code class="descname">send</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#IRCClient.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.IRCClient.send" title="Permalink to this definition">¶</a></dt>
 <dd><p>Send a message to the connected server. all arguments are joined
@@ -232,7 +238,7 @@ from IRCClient.send</p>
 
 <dl class="class">
 <dt id="aioyoyo.client.CommandClient">
-<em class="property">class </em><code class="descclassname">aioyoyo.client.</code><code class="descname">CommandClient</code><span class="sig-paren">(</span><em>loop</em>, <em>cmd_handler</em>, <em>address=None</em>, <em>port=None</em>, <em>protocol=&lt;class 'aioyoyo.protocol.ClientProtocol'&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#CommandClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.CommandClient" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">aioyoyo.client.</code><code class="descname">CommandClient</code><span class="sig-paren">(</span><em>cmd_handler</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/client.html#CommandClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.client.CommandClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>IRCClient, using a command handler</p>
 <dl class="method">
 <dt id="aioyoyo.client.CommandClient.data_received">
@@ -372,7 +378,7 @@ If you want your bot to properly respond to pings, etc, you should subclass this
 <h2>Additional Helper Functions<a class="headerlink" href="#additional-helper-functions" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="aioyoyo.helpers.HelperClient">
-<em class="property">class </em><code class="descclassname">aioyoyo.helpers.</code><code class="descname">HelperClient</code><span class="sig-paren">(</span><em>loop</em>, <em>address=None</em>, <em>port=None</em>, <em>protocol=&lt;class 'aioyoyo.protocol.ClientProtocol'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">aioyoyo.helpers.</code><code class="descname">HelperClient</code><span class="sig-paren">(</span><em>loop=None</em>, <em>address=None</em>, <em>port=None</em>, <em>protocol=&lt;class 'aioyoyo.protocol.ClientProtocol'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/aioyoyo/helpers.html#HelperClient"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aioyoyo.helpers.HelperClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Contains helper functions for common IRC commands, you may either inherit
 from HelperClient (which inherits IRCClient,) or you may just call the methods
 indirectly with HelperClient.method(client, <a href="#id1"><span class="problematic" id="id2">*</span></a>args), for example:</p>
