@@ -1,11 +1,10 @@
 from aioyoyo.client import CommandClient
 from aioyoyo.cmdhandler import CommandHandler, protected
-import asyncio
 
 
 class CommandExampleClient(CommandClient):
-    def __init__(self, loop, address=None, port=None):
-        CommandClient.__init__(self, loop, ExampleCommandHandler, address=address, port=port)
+    def __init__(self, *args, **kwargs):
+        CommandClient.__init__(self, *args, **kwargs)
         self.nick = "aioyoyo-example"
                 
     async def connection_made(self): # Overwrite connection_made to make it send join commands
@@ -24,10 +23,14 @@ class ExampleCommandHandler(CommandHandler):
     @protected
     def protected_operation(self): # Can't be called by a command, protected
         print(self.client.nick)
-        
-loop = asyncio.get_event_loop()
 
-client = CommandExampleClient(loop, address="irc.freenode.net", port=6667)
 
-loop.run_until_complete(client.connect())
-loop.run_forever()
+client = CommandExampleClient(CommandHandler, address="irc.freenode.net", port=6667)
+client.run()
+
+# Alternatively, we can pass the loop keyword arg to the client initializer
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(client.connect())
+# loop.run_forever()
+# We can run the connect coroutine directly instead of using the blocking run
+

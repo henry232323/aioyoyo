@@ -26,16 +26,17 @@ instance.
 To start the connection run IRCClient.connect(); (coroutine)
 """
 
+import asyncio
 import logging
 
-from .oyoyo.parse import *
+from .oyoyo.parse import parse_raw_irc_command
 from .protocol import ClientProtocol
 
 from aioyoyo.oyoyo.cmdhandler import IRCClientError
 
 
 class IRCClient(object):
-    def __init__(self, loop, address=None, port=None, protocol=ClientProtocol):
+    def __init__(self, loop=None, address=None, port=None, protocol=ClientProtocol):
         """
         A basic Async IRC client. Use coroutine IRCClient.connect to initiate
         the connection. Takes the event loop, a host (address, port) and if
@@ -43,7 +44,7 @@ class IRCClient(object):
         ClientProtocol class, which just uses the IRCClient's tracebacks and
         passes received data to the client.
         """
-        self.loop = loop
+        self.loop = loop if loop else asyncio.get_event_loop()
         self.host = (address, port)
         self.address = address
         self.port = port
@@ -115,15 +116,20 @@ class IRCClient(object):
         logging.info('close transport')
         self.protocol.transport.close()
 
+    def run(self):
+        """Starts the client, blocking. For a non-blocking coroutine use client.connect()"""
+        self.loop.run_until_complete(self.connect())
+        self.loop.run_forever()
+
 class CommandClient(IRCClient):
     """IRCClient, using a command handler"""
-    def __init__(self, loop, cmd_handler, address=None, port=None, protocol=ClientProtocol, **kwargs):
+    def __init__(self, cmd_handler, **kwargs):
         """Takes a command handler (see oyoyo.cmdhandler.CommandHandler)
         whose attributes are the commands you want callable, for example
         with a privmsg cmdhandler.privmsg will be awaited with the
         appropriate *args, decorate methods with @protected to make it
         uncallable as a command"""
-        IRCClient.__init__(self, loop, address=address, port=port, protocol=protocol, **kwargs)
+        super().__init__(self, **kwargs)
         self.command_handler = cmd_handler(self)
 
     async def data_received(self, data):
