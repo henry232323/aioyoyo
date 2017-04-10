@@ -32,7 +32,7 @@ oyoyo is an IRC library for Python, this project makes it completely asynchronou
 
 setup(
     name='aioyoyo',
-    version='1.2.3',
+    version='1.2.4',
     description='An Asyncio oyoyo port',
     long_description=long_description,
     url='https://github.com/henry232323/aioyoyo',
