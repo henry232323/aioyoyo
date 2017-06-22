@@ -1,4 +1,5 @@
 from aioyoyo.client import IRCClient
+import asyncio
 
 class BasicExampleClient(IRCClient):
     async def connection_made(self): # Overwrite connection_made to make it send join commands
@@ -14,6 +15,6 @@ class BasicExampleClient(IRCClient):
     async def connection_lost(self, exc): # Print on connection lost
         print("Connection has been lost! {}".format(exc))
 
-
-client = BasicExampleClient(address="irc.freenode.net", port=6667)
+loop = asyncio.get_event_loop()
+client = BasicExampleClient(loop=loop, address="irc.freenode.net", port=6667)
 client.run()
