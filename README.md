@@ -1,4 +1,8 @@
 # Aioyoyo
+[https://img.shields.io/pypi/v/aioyoyo.svg](https://pypi.python.org/pypi/aioyoyo)
+[https://img.shields.io/pypi/l/aioyoyo.svg](https://pypi.python.org/pypi/aioyoyo)
+[https://img.shields.io/pypi/pyversions/aioyoyo.svg](https://pypi.python.org/pypi/aioyoyo)
+<br />
 A port of the Python IRC library oyoyo to Asyncio for Python 3.5+
 A Python asyncio IRC library
 
